@@ -16,6 +16,19 @@
     { label: "Contact Us", href: "contact.html" }
   ];
   const YT = "https://youtube.com/channel/UC98ZPEoElNtVEr2OM-H6AbQ";
+  const LANGS = [
+    { code: "en", label: "English" },
+    { code: "zh-CN", label: "简体中文" },
+    { code: "zh-TW", label: "繁體中文" },
+    { code: "es", label: "Español" },
+    { code: "fr", label: "Français" },
+    { code: "de", label: "Deutsch" },
+    { code: "ko", label: "한국어" },
+    { code: "ja", label: "日本語" },
+    { code: "pt", label: "Português" }
+  ];
+  const chev = `<svg class="gt-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg>`;
+  const langMenu = `<div class="lang-menu" role="menu">${LANGS.map(l => `<button type="button" role="menuitem" data-lang="${l.code}">${l.label}</button>`).join("")}</div>`;
 
   const globeSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>`;
   const cartSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 6h15l-1.6 9.5a2 2 0 0 1-2 1.7H9.6a2 2 0 0 1-2-1.6L6 6 5 3H2"/><circle cx="9.5" cy="20" r="1.4"/><circle cx="17.5" cy="20" r="1.4"/></svg>`;
@@ -32,9 +45,10 @@
         ${NAV.map(n => `<a href="${n.href}">${n.label}</a>`).join("")}
       </nav>
       <div class="nav-actions">
-        <div class="gt-wrap hide-mobile" title="Select language">
-          <span class="gt-pill">${globeSVG}<span>Language</span></span>
-          <div id="google_translate_element" aria-label="Select language"></div>
+        <div class="gt-wrap hide-mobile">
+          <button type="button" class="gt-pill" data-lang-toggle aria-haspopup="true" aria-expanded="false">${globeSVG}<span>Language</span>${chev}</button>
+          ${langMenu}
+          <div id="google_translate_element" aria-hidden="true"></div>
         </div>
         <button class="cart-btn" data-open-cart aria-label="Open order list">${cartSVG}<span class="cart-count">0</span></button>
         <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>

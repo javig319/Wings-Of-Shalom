@@ -765,3 +765,34 @@ body{top:0!important}
 
 /* Marquee tint on wine */
 .band.soft .marquee li{color:var(--brand-700)}
+
+/* ============================================================================
+   17. Themed language dropdown + trailing flag cursor
+   ========================================================================== */
+/* Fully hide Google's native widget box (we drive it from our own menu) */
+#google_translate_element{position:absolute!important;left:0;top:100%;width:1px;height:1px;
+  overflow:hidden;opacity:0;pointer-events:none}
+.goog-te-banner-frame,.skiptranslate>iframe{display:none!important}
+body{top:0!important}
+#goog-gt-tt,.goog-te-balloon-frame{display:none!important}
+.goog-text-highlight{background:none!important;box-shadow:none!important}
+
+.gt-pill{gap:.45rem}
+.gt-pill .gt-chev{transition:transform var(--t)}
+.gt-pill[aria-expanded="true"] .gt-chev{transform:rotate(180deg)}
+.lang-menu{position:absolute;top:calc(100% + 10px);right:0;z-index:120;min-width:196px;
+  background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh-3);
+  padding:.4rem;display:flex;flex-direction:column;gap:2px;transform-origin:top right;
+  transform:translateY(-6px) scale(.97);opacity:0;visibility:hidden;
+  transition:opacity .2s var(--ease),transform .22s var(--ease-spring),visibility .2s}
+.lang-menu.open{opacity:1;visibility:visible;transform:none}
+.lang-menu button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;padding:.62rem .85rem;
+  border-radius:9px;color:var(--ink-800);font-weight:600;font-size:.92rem;font-family:var(--font-body);
+  transition:background .15s,color .15s;position:relative}
+.lang-menu button:hover,.lang-menu button:focus-visible{background:var(--lilac-100);color:var(--brand-700)}
+.lang-menu button.active{background:var(--lilac-100);color:var(--brand-700)}
+.lang-menu button.active::after{content:"✓";position:absolute;right:.8rem;color:var(--brand-500);font-weight:800}
+
+/* Realistic trailing silk-flag cursor (desktop, motion-safe) */
+.flag-cursor{position:fixed;inset:0;z-index:395;pointer-events:none}
+@media (hover:none),(prefers-reduced-motion:reduce){.flag-cursor{display:none!important}}
