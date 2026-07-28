@@ -76,10 +76,11 @@
     });
   }
 
-  /* ---- Magnetic buttons ---------------------------------------------------- */
+  /* ---- Magnetic buttons (all large CTAs float toward the cursor) ---------- */
   if (!RM && window.matchMedia("(pointer:fine)").matches) {
-    $$("[data-magnetic]").forEach(el => {
-      const strength = parseFloat(el.dataset.magnetic) || 0.35;
+    const magnets = new Set([...$$("[data-magnetic]"), ...$$(".btn.lg")]);
+    magnets.forEach(el => {
+      const strength = parseFloat(el.dataset.magnetic) || 0.28;
       el.addEventListener("pointermove", (e) => {
         const r = el.getBoundingClientRect();
         el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * strength}px,${(e.clientY - r.top - r.height / 2) * strength}px)`;
@@ -292,6 +293,36 @@
         hero.style.setProperty("--mx", "0"); hero.style.setProperty("--my", "0");
       });
     }
+  }
+
+  /* ---- Premium: trailing cursor glow -------------------------------------- */
+  if (!RM && window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
+    const glow = document.createElement("div");
+    glow.className = "cursor-glow";
+    document.body.appendChild(glow);
+    let tx = innerWidth / 2, ty = innerHeight / 2, gx = tx, gy = ty, shown = false;
+    window.addEventListener("pointermove", (e) => {
+      tx = e.clientX; ty = e.clientY;
+      if (!shown) { glow.style.opacity = ".9"; shown = true; }
+    }, { passive: true });
+    window.addEventListener("pointerover", (e) => {
+      glow.classList.toggle("big", !!e.target.closest("a,button,.card,.product,.stat-card,.opt,.chip"));
+    });
+    window.addEventListener("mouseleave", () => { glow.style.opacity = "0"; shown = false; });
+    const loop = () => { gx += (tx - gx) * 0.2; gy += (ty - gy) * 0.2;
+      glow.style.left = gx + "px"; glow.style.top = gy + "px"; requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+
+  /* ---- Premium: spotlight that follows the cursor across cards ------------- */
+  if (!RM) {
+    document.addEventListener("pointermove", (e) => {
+      const el = e.target.closest(".card,.stat-card,.product,[data-glow]");
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100).toFixed(1) + "%");
+      el.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100).toFixed(1) + "%");
+    }, { passive: true });
   }
 
   /* ---- Year in footer ------------------------------------------------------ */

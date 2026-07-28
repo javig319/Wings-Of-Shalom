@@ -715,3 +715,53 @@ body{top:0!important}
   .stat-cards{grid-template-columns:1fr;max-width:420px}
   .team-grid{grid-template-columns:1fr;gap:2rem}
 }
+
+/* ============================================================================
+   16. "WOW" premium layer — cursor glow, spotlight cards, ken burns, depth
+   ========================================================================== */
+/* Trailing cursor glow (desktop, motion-safe) */
+.cursor-glow{position:fixed;left:0;top:0;width:28px;height:28px;border-radius:50%;z-index:400;
+  pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:0;
+  background:radial-gradient(circle,rgba(243,197,94,.9),rgba(224,85,155,.55) 45%,transparent 72%);
+  transition:width .28s var(--ease),height .28s var(--ease),opacity .3s}
+.cursor-glow.big{width:70px;height:70px}
+@media (hover:none),(prefers-reduced-motion:reduce){.cursor-glow{display:none!important}}
+
+/* Pointer spotlight that follows the cursor across cards */
+.card,.stat-card,.product,.info-media,[data-glow]{position:relative}
+.card::after,.stat-card::after,.product::after,[data-glow]::after{content:"";position:absolute;inset:0;
+  border-radius:inherit;pointer-events:none;opacity:0;z-index:2;transition:opacity .45s var(--ease);
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(224,85,155,.18),transparent 62%)}
+.card:hover::after,.stat-card:hover::after,.product:hover::after,[data-glow]:hover::after{opacity:1}
+/* Sheen sweep across media on hover */
+.info-media{overflow:hidden}
+.info-media::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.28) 50%,transparent 68%);
+  transform:translateX(-130%)}
+.info-media:hover::before{animation:sheen 1s var(--ease) forwards}
+
+/* Buttons float higher + glow (premium hover) */
+.btn:hover{transform:translateY(-4px) scale(1.02)}
+.btn.gold:hover{box-shadow:0 20px 46px rgba(231,169,59,.5)}
+
+/* Card lift depth boost */
+.card:hover,.stat-card:hover{transform:translateY(-7px)}
+
+/* Hero Ken Burns slow zoom */
+@media (prefers-reduced-motion:no-preference){
+  .home-hero .bg img{animation:kenburns 24s ease-out infinite alternate;transform-origin:60% 40%}
+}
+@keyframes kenburns{from{transform:scale(1.03)}to{transform:scale(1.13)}}
+
+/* Reveal: pop (scale+rise) for premium entrances */
+[data-reveal="pop"]{opacity:0;transform:translateY(30px) scale(.96)}
+[data-reveal="pop"].in{opacity:1;transform:none;transition:opacity .7s var(--ease-out),transform .7s var(--ease-spring)}
+
+/* Sec-head shimmering underline accent */
+.sec-head{position:relative;overflow:hidden}
+.sec-head::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;
+  background:var(--grad-gold);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease-out)}
+.sec-head.in::after,[data-reveal].in .sec-head::after{transform:scaleX(1)}
+
+/* Marquee tint on wine */
+.band.soft .marquee li{color:var(--brand-700)}
