@@ -32,43 +32,44 @@
 @font-face{font-family:"Manrope";src:url("../fonts/manrope-800.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
 @font-face{font-family:"Playfair";src:url("../fonts/playfair-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:"Playfair";src:url("../fonts/playfair-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"GreatVibes";src:url("../fonts/great-vibes-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 
 /* ---------- 2. Design tokens ----------------------------------------------- */
 :root{
   /* --- Purple scale (the MAIN color family) --- */
-  --plum-950:#1c0733;
-  --plum-900:#2a0e4f;
-  --plum-800:#3b1466;
-  --plum-700:#4c1d95;
-  --brand-700:#5b21b6;
-  --brand-600:#6d28d9;   /* primary */
-  --brand-500:#7c3aed;   /* bright primary / CTA */
-  --brand-400:#9061f0;
-  --lilac-300:#b794f6;
-  --lilac-200:#d6bcfa;
-  --lilac-100:#ede9fe;
-  --lilac-50:#f6f2ff;
+  --plum-950:#320a22;
+  --plum-900:#4a1130;
+  --plum-800:#5e1740;
+  --plum-700:#761f50;
+  --brand-700:#7e2649;
+  --brand-600:#9c335e;   /* WINE — matches the live site exactly */
+  --brand-500:#b84776;   /* brighter wine / CTA hover */
+  --brand-400:#cf6b93;
+  --lilac-300:#e7a6c2;
+  --lilac-200:#f3cbdd;
+  --lilac-100:#fbe9f1;
+  --lilac-50:#fef4f8;
 
   /* --- Complementary accents (purple stays dominant) --- */
   --gold-600:#c68a1e;
-  --gold-500:#e0a92e;    /* regal gold */
-  --gold-400:#f0c45a;
-  --rose-500:#e0559b;    /* flag-vibrant magenta-rose */
-  --rose-400:#f472b6;
-  --teal-400:#3fd0c9;    /* cool complement, used sparingly */
-  --teal-300:#5eead4;
+  --gold-500:#e7a93b;    /* regal gold */
+  --gold-400:#f3c55e;
+  --rose-500:#e14a8b;    /* flag rose-pink */
+  --rose-400:#f072a6;
+  --teal-400:#f2683a;    /* warm coral accent */
+  --teal-300:#f68a4f;
 
   /* --- Neutrals (purple-tinted) --- */
-  --ink-900:#180f28;
-  --ink-800:#241a38;
-  --ink-600:#4a3f60;
-  --ink-500:#6b6083;
-  --ink-400:#8f86a6;
+  --ink-900:#2a1024;
+  --ink-800:#3a1a30;
+  --ink-600:#6a4a5c;
+  --ink-500:#8a6a7c;
+  --ink-400:#a98fa0;
   --paper:#ffffff;
-  --paper-2:#faf7ff;
-  --paper-3:#f3ecfd;
-  --line:#e7ddf7;
-  --line-strong:#d8c9f2;
+  --paper-2:#fff8fb;
+  --paper-3:#fdeef4;
+  --line:#f2dde8;
+  --line-strong:#e8c6d8;
 
   /* --- Semantic tokens (light context default) --- */
   --bg:var(--paper);
@@ -83,13 +84,15 @@
   --border:var(--line);
 
   /* --- Gradients --- */
-  --grad-brand:linear-gradient(120deg,var(--brand-600),var(--brand-500) 40%,var(--rose-500));
-  --grad-royal:linear-gradient(135deg,var(--plum-900),var(--brand-600) 55%,var(--brand-500));
+  --grad-brand:linear-gradient(120deg,#9c335e,#b84776);
+  --grad-royal:linear-gradient(135deg,var(--plum-900),var(--brand-600) 60%,var(--brand-500));
   --grad-gold:linear-gradient(120deg,var(--gold-400),var(--gold-500));
-  --grad-text:linear-gradient(100deg,var(--brand-500),var(--rose-500) 60%,var(--gold-500));
+  --grad-warm:linear-gradient(120deg,#f2683a,#e14a8b 45%,#9c335e);
+  --grad-text:linear-gradient(100deg,#e0559b,#9c335e 48%,#e7a93b);
   --grad-sheen:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.55) 50%,transparent 80%);
 
   /* --- Type --- */
+  --font-script:"GreatVibes","Snell Roundhand","Apple Chancery",cursive;
   --font-display:"Cormorant","Iowan Old Style","Palatino Linotype",Georgia,serif;
   --font-quote:"Playfair","Cormorant",Georgia,serif;
   --font-body:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -110,8 +113,8 @@
   --sh-2:0 6px 18px rgba(59,20,102,.10),0 2px 6px rgba(59,20,102,.06);
   --sh-3:0 18px 44px rgba(59,20,102,.16),0 6px 14px rgba(59,20,102,.09);
   --sh-4:0 34px 80px rgba(43,14,79,.28),0 12px 30px rgba(43,14,79,.16);
-  --sh-brand:0 20px 50px rgba(109,40,217,.35);
-  --ring:0 0 0 3px rgba(124,58,237,.35);
+  --sh-brand:0 20px 50px rgba(156,51,94,.4);
+  --ring:0 0 0 3px rgba(156,51,94,.35);
 
   /* --- Motion --- */
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -588,6 +591,87 @@ body{top:0!important}
 .hero.parallax-on .aurora{transform:translate(calc(var(--mx,0)*14px),calc(var(--my,0)*14px))}
 .hero.parallax-on .stars{transform:translate(calc(var(--mx,0)*-8px),calc(var(--my,0)*-8px))}
 
+/* ---------- 14c. Live-site match (wine brand) ------------------------------ */
+/* Solid wine nav with white text (matches wingsofshalom.org) */
+.nav{background:var(--brand-600);box-shadow:0 2px 16px rgba(50,10,34,.28)}
+.nav.scrolled{background:var(--brand-700);backdrop-filter:none;-webkit-backdrop-filter:none;
+  border-bottom:1px solid rgba(255,255,255,.12)}
+.brand{color:#fff}
+.brand .logo-img{height:52px;width:auto;display:block}
+.nav.scrolled .brand .logo-img{height:44px;transition:height var(--t)}
+.nav-links a{color:rgba(255,255,255,.9)}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links a::after{background:var(--gold-400)}
+.cart-btn,.gt-pill,.nav-toggle{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28);color:#fff}
+.cart-btn:hover{color:#fff;background:rgba(255,255,255,.24)}
+.gt-pill:hover{color:#fff}
+.nav-toggle span{background:#fff}
+@media (max-width:860px){
+  .nav-links{background:var(--brand-700)}
+  .nav-links a{color:#fff;border-bottom-color:rgba(255,255,255,.14)}
+}
+/* Section-header wine pill (Our Story / Goals and Vision / …) */
+.sec-head{display:block;background:var(--brand-600);color:#fff;font-family:var(--font-display);
+  font-weight:700;font-size:clamp(1.3rem,2.5vw,2rem);text-align:center;padding:.5em 1.1em;
+  border-radius:6px;box-shadow:var(--sh-2);margin:0 0 1.3rem}
+.on-dark .sec-head{background:rgba(255,255,255,.14)}
+/* Calligraphy wordmark */
+.script-word{font-family:var(--font-script);font-weight:400;line-height:.95;
+  font-size:clamp(2.8rem,9vw,6rem)}
+/* Home hero (image band + emblem + tagline) */
+.home-hero{position:relative;min-height:82svh;display:grid;place-items:center;text-align:center;
+  padding:8.5rem 1rem 4.5rem;overflow:hidden;color:#fff}
+.home-hero .bg{position:absolute;inset:0;z-index:0}
+.home-hero .bg img{width:100%;height:100%;object-fit:cover}
+.home-hero .bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(50,10,34,.45),rgba(74,17,48,.72))}
+.home-hero .inner{position:relative;z-index:2;max-width:940px}
+.home-hero .emblem{width:min(380px,74vw);margin:0 auto .6rem;
+  filter:drop-shadow(0 14px 34px rgba(0,0,0,.45))}
+.home-hero .tagline{font-family:var(--font-body);font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;font-size:clamp(.8rem,1.6vw,1.05rem);color:var(--gold-400)}
+/* Exodus scripture band */
+.verse-band{background:var(--brand-600);color:#fff;text-align:center;padding:2.2rem 1.2rem;
+  box-shadow:var(--sh-3)}
+.verse-band .v{font-family:var(--font-quote);font-style:italic;font-size:clamp(1.3rem,2.8vw,2rem);
+  line-height:1.4;max-width:60ch;margin:0 auto}
+.verse-band .ref{display:block;margin-top:.5rem;font-family:var(--font-body);font-weight:700;
+  letter-spacing:.05em;color:var(--gold-400)}
+/* Alternating info row (image + text) */
+.info-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);align-items:center}
+.info-row.rev{direction:rtl}.info-row.rev>*{direction:ltr}
+.info-media{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-3)}
+.info-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.prose-accent p{color:var(--brand-700)}
+.on-dark .prose-accent p{color:#f3d9e6}
+/* Stat cards (count-up) */
+.stat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;max-width:840px;margin:0 auto}
+.stat-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.7rem 1rem;
+  text-align:center;box-shadow:var(--sh-2);transition:transform var(--t) var(--ease-out),box-shadow var(--t)}
+.stat-card:hover{transform:translateY(-5px);box-shadow:var(--sh-3)}
+.stat-card b{display:block;font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2.1rem,4.4vw,3.1rem);color:var(--brand-600);line-height:1}
+.stat-card span{display:block;margin-top:.35rem;color:var(--ink-600);font-weight:600;font-size:.95rem}
+/* Team ovals */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4)}
+.team-card{text-align:center}
+.team-oval{width:180px;height:230px;object-fit:cover;border-radius:50%;margin:0 auto 1rem;
+  border:5px solid #fff;box-shadow:var(--sh-3)}
+.team-card h3{margin:0 0 .1rem;font-family:var(--font-body);font-weight:800;color:var(--brand-700)}
+.team-card .role{color:var(--gold-600);font-weight:600;font-size:.9rem}
+.team-featured .team-oval{width:230px;height:290px}
+/* Warm collage band tint for Our Story */
+.collage{position:relative;overflow:hidden}
+.collage .bg{position:absolute;inset:0;z-index:0}
+.collage .bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.collage .bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(251,233,241,.7),rgba(231,166,194,.55))}
+.collage .container{position:relative;z-index:2}
+/* Content swipe-in (used on Our Story paragraphs) */
+[data-reveal="swipe"]{opacity:0;transform:translateX(-42px)}
+[data-reveal="swipe"].in{opacity:1;transform:none;
+  transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+
 /* ---------- 15. Utilities & responsive ------------------------------------- */
 .hide{display:none!important}
 .mt-0{margin-top:0}.mb-0{margin-bottom:0}
@@ -623,4 +707,11 @@ body{top:0!important}
 @media (max-width:520px){
   .footer .cols{grid-template-columns:1fr}
   :root{--sp-8:4.5rem;--sp-7:3.5rem}
+}
+
+/* Live-site-match responsive */
+@media (max-width:900px){
+  .info-row,.info-row.rev{grid-template-columns:1fr;direction:ltr}
+  .stat-cards{grid-template-columns:1fr;max-width:420px}
+  .team-grid{grid-template-columns:1fr;gap:2rem}
 }

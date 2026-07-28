@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact — Wings of Shalom</title>
-  <meta name="description" content="Get in touch with Wings of Shalom — questions, custom flags, bookings, and prayer.">
+  <title>Contact Us — Wings of Shalom</title>
+  <meta name="description" content="Contact Wings of Shalom — call, text, or email us about classes, worship flags, bookings, and prayer.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-600.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/theme.css">
@@ -15,42 +15,69 @@
 </head>
 <body>
 <div id="site-header"></div>
+
 <main>
-  <section class="band royal" style="padding:10rem 0 3.5rem;position:relative;overflow:hidden">
-    <div class="aurora" style="opacity:.5"><i></i><i></i><i></i></div>
+  <section class="band royal" style="padding:9rem 0 3rem;position:relative;overflow:hidden;text-align:center">
+    <div class="aurora" style="opacity:.4"><i></i><i></i><i></i></div>
     <div class="container" style="position:relative;z-index:2">
-      <span class="eyebrow" style="color:var(--gold-400)" data-reveal>Say Hello</span>
-      <h1 data-reveal data-reveal-delay="1" style="color:#fff">Contact Us</h1>
-      <p class="lead" data-reveal data-reveal-delay="2" style="color:#e9ddfb;max-width:58ch">Questions, custom orders, bookings, or prayer — we'd love to hear from you. <em>[placeholder]</em></p>
+      <h1 data-reveal style="color:#fff">Contact Us</h1>
+      <p class="lead" data-reveal data-reveal-delay="1" style="color:#f3d9e6;max-width:52ch;margin-inline:auto">Find out more about this ministry by calling, texting, or emailing us.</p>
     </div>
   </section>
-  
+
   <section class="section">
     <div class="container grid cols-2" style="gap:var(--sp-6);align-items:start">
-      <div class="card" data-reveal="left"><div class="pad">
+      <!-- Details -->
+      <div data-reveal="left">
+        <span class="sec-head" style="display:inline-block">Get in Touch</span>
+        <div class="stack" style="gap:1rem">
+          <a class="card" href="tel:+15103207580" style="display:block"><div class="pad flex" style="gap:1rem">
+            <span style="flex:0 0 auto;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600);font-size:1.3rem">📞</span>
+            <div><strong style="color:var(--brand-700)">Call or Text</strong><br><span style="color:var(--text-soft)">(510) 320-7580</span></div>
+          </div></a>
+          <a class="card" href="mailto:wingsofshalom@gmail.com" style="display:block"><div class="pad flex" style="gap:1rem">
+            <span style="flex:0 0 auto;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600);font-size:1.3rem">✉️</span>
+            <div><strong style="color:var(--brand-700)">Email</strong><br><span style="color:var(--text-soft)">wingsofshalom@gmail.com</span></div>
+          </div></a>
+          <a class="card" href="https://youtube.com/channel/UC98ZPEoElNtVEr2OM-H6AbQ" target="_blank" rel="noopener" style="display:block"><div class="pad flex" style="gap:1rem">
+            <span style="flex:0 0 auto;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600);font-size:1.3rem">▶</span>
+            <div><strong style="color:var(--brand-700)">YouTube</strong><br><span style="color:var(--text-soft)">Watch worship flag dance</span></div>
+          </div></a>
+        </div>
+        <a class="btn lg block" href="tel:+15103207580" data-magnetic="0.2" style="margin-top:1.4rem">📞 Click to Call</a>
+        <p class="small" style="text-align:center;color:var(--brand-600);font-weight:700;margin-top:1.4rem">Wings of Shalom is a 501(c)(3) Nonprofit Organization</p>
+      </div>
+
+      <!-- Message form -->
+      <div class="card" data-reveal="right"><div class="pad" style="padding:2rem">
         <h3>Send a message</h3>
-        <form onsubmit="WOS.toast('Thanks! (Wire this form to your email service.)');return false">
-          <div class="row-2"><div class="field"><label>First name</label><input class="input" required></div><div class="field"><label>Last name</label><input class="input"></div></div>
-          <div class="field"><label>Email</label><input class="input" type="email" required></div>
-          <div class="field"><label>Subject</label><input class="input"></div>
-          <div class="field"><label>Message</label><textarea class="textarea" required></textarea></div>
-          <button class="btn block lg" type="submit">Send message</button>
-          <p class="small" style="color:var(--text-faint);margin-top:.6rem">[Connect to Formspree / your email service — placeholder handler.]</p>
+        <form onsubmit="return wosContact(event)">
+          <div class="row-2">
+            <div class="field"><label for="c-name">Name</label><input class="input" id="c-name" required></div>
+            <div class="field"><label for="c-email">Email</label><input class="input" id="c-email" type="email" required></div>
+          </div>
+          <div class="field"><label for="c-subj">Subject</label><input class="input" id="c-subj"></div>
+          <div class="field"><label for="c-msg">Message</label><textarea class="textarea" id="c-msg" required></textarea></div>
+          <button class="btn block lg" type="submit">Send message →</button>
+          <p class="small" style="color:var(--text-faint);margin-top:.6rem;text-align:center">Opens your email to wingsofshalom@gmail.com.</p>
         </form>
       </div></div>
-      <div data-reveal="right">
-        <div class="card" style="margin-bottom:1.1rem"><div class="pad flex" style="gap:1rem"><span class="ic feature-ic" style="width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600)">✉</span><div><strong>Email</strong><br><a href="mailto:hello@wingsofshalom.org">hello@wingsofshalom.org</a> <span class="small" style="color:var(--text-faint)">[placeholder]</span></div></div></div>
-        <div class="card" style="margin-bottom:1.1rem"><div class="pad flex" style="gap:1rem"><span class="ic feature-ic" style="width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600)">☎</span><div><strong>Phone</strong><br>[+1 000 000 0000 — placeholder]</div></div></div>
-        <div class="card" style="margin-bottom:1.1rem"><div class="pad flex" style="gap:1rem"><span class="ic feature-ic" style="width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600)">📍</span><div><strong>Location</strong><br>[City, Country — placeholder]</div></div></div>
-        <div class="card"><div class="pad"><strong>Follow along</strong><div class="socials" style="margin-top:.7rem">
-          <a href="#" aria-label="Facebook" style="background:var(--lilac-100);color:var(--brand-600)">f</a>
-          <a href="#" aria-label="Instagram" style="background:var(--lilac-100);color:var(--brand-600)">◎</a>
-          <a href="#" aria-label="YouTube" style="background:var(--lilac-100);color:var(--brand-600)">▶</a>
-        </div></div></div>
-      </div>
     </div>
   </section>
 </main>
+
 <div id="site-footer"></div>
+
+<script>
+  function wosContact(e) {
+    e.preventDefault();
+    var g = function (id) { return (document.getElementById(id).value || "").trim(); };
+    var body = "Name: " + g("c-name") + "%0D%0AEmail: " + g("c-email") + "%0D%0A%0D%0A" + g("c-msg");
+    window.location.href = "mailto:wingsofshalom@gmail.com?subject=" +
+      encodeURIComponent(g("c-subj") || "Website enquiry") + "&body=" + body;
+    if (window.WOS && WOS.toast) WOS.toast("Opening your email…");
+    return false;
+  }
+</script>
 </body>
 </html>

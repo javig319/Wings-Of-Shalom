@@ -127,7 +127,7 @@
       ${Cart.subtotal() < CONFIG.freeShipOver ? `<div class="summary-row" style="color:var(--brand-500);font-size:.82rem">
         <span>Add ${money(CONFIG.freeShipOver - Cart.subtotal())} for free shipping</span><span></span></div>` : ""}
       <div class="summary-row total"><span>Total</span><span>${money(Cart.total())}</span></div>
-      <a class="btn block lg" href="checkout.html" style="margin-top:1rem">Checkout →</a>
+      <a class="btn block lg" href="worship-flags.html#order" style="margin-top:1rem">Request order →</a>
       <button class="btn ghost block sm" data-close-cart style="margin-top:.6rem">Continue shopping</button>`;
 
     lines.querySelectorAll(".qty").forEach(q => {

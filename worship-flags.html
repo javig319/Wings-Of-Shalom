@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shop Worship Flags & Banners — Wings of Shalom</title>
-  <meta name="description" content="Shop handcrafted worship flags, angel-wing flags, banners, and flexible rods. Secure checkout & worldwide shipping.">
+  <title>Worship Flags — Wings of Shalom</title>
+  <meta name="description" content="Handcrafted worship flag designs by Wings of Shalom — Arise and Shine, River of Life, First Love, and Wings of Shalom. Order or inquire.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-600.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-500.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/theme.css">
   <script defer src="assets/js/products.js"></script>
   <script defer src="assets/js/components.js"></script>
@@ -18,40 +17,98 @@
 <div id="site-header"></div>
 
 <main>
-  <!-- Shop hero -->
-  <section class="band royal" style="padding:10rem 0 3.5rem;position:relative;overflow:hidden">
-    <div class="aurora" style="opacity:.5"><i></i><i></i><i></i></div>
+  <section class="band royal" style="padding:9rem 0 3rem;position:relative;overflow:hidden;text-align:center">
+    <div class="aurora" style="opacity:.4"><i></i><i></i><i></i></div>
     <div class="container" style="position:relative;z-index:2">
-      <span class="eyebrow" style="color:var(--gold-400)" data-reveal>The Shop</span>
-      <h1 data-reveal data-reveal-delay="1" style="color:#fff">Worship Flags &amp; Banners</h1>
-      <p class="lead" data-reveal data-reveal-delay="2" style="color:#e9ddfb;max-width:56ch">
-        Handcrafted silk flags made for worship — light, vivid, and built to flow.
-        Secure checkout, worldwide shipping. <em>[placeholder — replace with real products from your folder]</em></p>
-      <div class="trust-row" data-reveal data-reveal-delay="3" style="justify-content:flex-start;color:#cdbff0;margin-top:1.4rem">
-        <span>🔒 Secure Stripe checkout</span><span>🚚 Free shipping over $75</span><span>↩ Easy returns</span><span>✦ Handmade</span>
-      </div>
+      <h1 data-reveal style="color:#fff">Worship Flags</h1>
+      <p class="lead" data-reveal data-reveal-delay="1" style="color:#f3d9e6;max-width:60ch;margin-inline:auto">
+        Designed and created to equip worship flag warriors — four silk flag designs, each carrying a word from Scripture.</p>
+      <p class="small" data-reveal data-reveal-delay="2" style="color:#e7b9cd;margin-top:.6rem">Pricing coming soon — request or inquire below and we'll be in touch.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <!-- Filters -->
-      <div class="shop-toolbar" id="shop-filters" role="tablist" aria-label="Product categories"></div>
-      <!-- Grid (rendered by store.js) -->
-      <div class="product-grid" id="product-grid"></div>
+      <div class="product-grid" id="flag-grid"></div>
     </div>
   </section>
 
-  <!-- Reassurance strip -->
-  <section class="section-sm band soft">
-    <div class="container grid cols-3">
-      <div class="feature" data-reveal><span class="ic">🚚</span><div><h3>Worldwide Shipping</h3><p>Flat-rate shipping, free over $75. Tracked delivery. [placeholder]</p></div></div>
-      <div class="feature" data-reveal data-reveal-delay="1"><span class="ic">🔒</span><div><h3>Secure Checkout</h3><p>Card, Apple&nbsp;Pay &amp; Google&nbsp;Pay via Stripe. We never see your card.</p></div></div>
-      <div class="feature" data-reveal data-reveal-delay="2"><span class="ic">↩</span><div><h3>Easy Returns</h3><p>30-day returns on unused flags. [placeholder policy]</p></div></div>
+  <!-- Order / Inquiry -->
+  <section class="section band soft" id="order">
+    <div class="narrow">
+      <span class="sec-head" data-reveal>Order / Inquiry</span>
+      <p class="text-center lead" data-reveal data-reveal-delay="1" style="margin-bottom:1.6rem">Tell us which flag you'd like and any details — we'll reply with availability and pricing.</p>
+      <form class="card" id="order-form" data-reveal="zoom" onsubmit="return wosSubmitOrder(event)"><div class="pad" style="padding:2rem">
+        <div class="row-2">
+          <div class="field"><label for="of-name">Your name</label><input class="input" id="of-name" required></div>
+          <div class="field"><label for="of-email">Email</label><input class="input" id="of-email" type="email" required></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label for="of-phone">Phone (optional)</label><input class="input" id="of-phone"></div>
+          <div class="field"><label for="of-flag">Flag design</label>
+            <select class="select" id="of-flag"></select></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label for="of-qty">Quantity</label><input class="input" id="of-qty" type="number" min="1" value="1"></div>
+          <div class="field"><label for="of-ship">Ship to (city / country)</label><input class="input" id="of-ship"></div>
+        </div>
+        <div class="field"><label for="of-msg">Message</label><textarea class="textarea" id="of-msg" placeholder="Colour preference, event date, questions…"></textarea></div>
+        <button class="btn block lg" type="submit">Send order request →</button>
+        <p class="small" style="color:var(--text-faint);margin-top:.7rem;text-align:center">Opens your email to <strong>wingsofshalom@gmail.com</strong>. Live card checkout can be switched on later.</p>
+      </div></form>
     </div>
   </section>
 </main>
 
 <div id="site-footer"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var P = window.WOS_PRODUCTS || [];
+    var grid = document.getElementById("flag-grid");
+    grid.innerHTML = P.map(function (p, i) {
+      return '<article class="product" data-reveal data-reveal-delay="' + ((i % 4) + 1) + '">' +
+        '<div class="media"><span class="badge gold tag">Price on request</span>' +
+        '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
+        '<div class="info"><span class="cat">' + p.subtitle + '</span>' +
+        '<h3>' + p.name + '</h3>' +
+        '<p style="font-family:var(--font-quote);font-style:italic;color:var(--text-soft);font-size:.92rem;margin:.2rem 0 0">' + p.scripture + '</p>' +
+        '<button class="btn sm block" style="margin-top:.9rem" data-req="' + p.id + '">Request this flag</button>' +
+        '</div></article>';
+    }).join("");
+    grid.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("in"); });
+
+    // Fill the flag <select>
+    var sel = document.getElementById("of-flag");
+    sel.innerHTML = P.map(function (p) { return '<option value="' + p.name + '">' + p.name + ' — ' + p.subtitle + '</option>'; }).join("") + '<option value="Not sure / more than one">Not sure / more than one</option>';
+
+    // "Request this flag" → preselect + scroll to form
+    grid.querySelectorAll("[data-req]").forEach(function (b) {
+      b.onclick = function () {
+        var p = P.find(function (x) { return x.id === b.dataset.req; });
+        if (p) sel.value = p.name;
+        document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+        setTimeout(function () { document.getElementById("of-name").focus(); }, 500);
+      };
+    });
+  });
+
+  function wosSubmitOrder(e) {
+    e.preventDefault();
+    var g = function (id) { return (document.getElementById(id).value || "").trim(); };
+    var body =
+      "Name: " + g("of-name") + "%0D%0A" +
+      "Email: " + g("of-email") + "%0D%0A" +
+      "Phone: " + g("of-phone") + "%0D%0A" +
+      "Flag: " + g("of-flag") + "%0D%0A" +
+      "Quantity: " + g("of-qty") + "%0D%0A" +
+      "Ship to: " + g("of-ship") + "%0D%0A%0D%0A" +
+      "Message:%0D%0A" + g("of-msg");
+    window.location.href = "mailto:wingsofshalom@gmail.com?subject=" +
+      encodeURIComponent("Worship Flag Order / Inquiry — " + g("of-flag")) + "&body=" + body;
+    if (window.WOS && WOS.toast) WOS.toast("Opening your email…");
+    return false;
+  }
+</script>
 </body>
 </html>
