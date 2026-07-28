@@ -43,6 +43,10 @@
       </a>
       <nav class="nav-links" id="nav-links" aria-label="Primary">
         ${NAV.map(n => `<a href="${n.href}">${n.label}</a>`).join("")}
+        <div class="lang-mobile only-mobile">
+          <span class="lm-label">🌐 Language</span>
+          <div class="lm-row">${LANGS.map(l => `<button type="button" data-lang="${l.code}">${l.label}</button>`).join("")}</div>
+        </div>
       </nav>
       <div class="nav-actions">
         <div class="gt-wrap hide-mobile">
@@ -50,6 +54,7 @@
           ${langMenu}
           <div id="google_translate_element" aria-hidden="true"></div>
         </div>
+        <button class="cart-btn sound-btn" data-sound-toggle aria-label="Play or mute background hymns" title="Background hymns"></button>
         <button class="cart-btn" data-open-cart aria-label="Open order list">${cartSVG}<span class="cart-count">0</span></button>
         <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>

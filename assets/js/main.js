@@ -160,7 +160,7 @@
   const langToggle = $("[data-lang-toggle]");
   const langMenu = $(".lang-menu");
   const currentLang = () => { const m = document.cookie.match(/googtrans=\/[^/]*\/([^;]+)/); return m ? decodeURIComponent(m[1]) : "en"; };
-  const setActiveLang = (code) => { if (langMenu) langMenu.querySelectorAll("[data-lang]").forEach(b => b.classList.toggle("active", b.dataset.lang === code)); };
+  const setActiveLang = (code) => { $$("[data-lang]").forEach(b => b.classList.toggle("active", b.dataset.lang === code)); };
   const openLang = (o) => {
     if (!langMenu || !langToggle) return;
     const open = o === undefined ? !langMenu.classList.contains("open") : o;
@@ -194,6 +194,15 @@
   $$("[data-open-language]").forEach(b => b.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: RM ? "auto" : "smooth" });
     setTimeout(() => openLang(true), RM ? 0 : 420);
+  }));
+  if (langMenu) setActiveLang(currentLang());
+  // Mobile language buttons (inside the slide-down menu)
+  $$(".lang-mobile [data-lang]").forEach(b => b.addEventListener("click", () => {
+    setActiveLang(b.dataset.lang);
+    if (toggle) toggle.classList.remove("open");
+    if (links) links.classList.remove("open");
+    document.body.style.overflow = "";
+    applyLang(b.dataset.lang);
   }));
 
   /* ---- Flowing worship-flag silk (hero canvas) ---------------------------- */
@@ -336,15 +345,24 @@
     let W, H;
     const resize = () => { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
     resize(); window.addEventListener("resize", resize);
-    const N = 20, SEG = 9, GRAV = 0.55, FRIC = 0.86;      // verlet cloth: gravity + momentum
-    let mx = innerWidth / 2, my = innerHeight / 2, active = false, started = false;
+    const N = 22, SEG = 8, GRAV = 0.45, DAMP = 0.9;       // inextensible chain: gravity + momentum
+    let mx = innerWidth / 2, my = innerHeight / 2, hvx = 0, side = 1, active = false, started = false;
     const pts = Array.from({ length: N }, () => ({ x: mx, y: my, px: mx, py: my }));
-    window.addEventListener("pointermove", (e) => { mx = e.clientX; my = e.clientY; active = true; }, { passive: true });
+    window.addEventListener("pointermove", (e) => { hvx = e.clientX - mx; mx = e.clientX; my = e.clientY; active = true; }, { passive: true });
     document.addEventListener("mouseleave", () => { active = false; });
     function physics() {
-      pts[0].x = mx; pts[0].y = my; pts[0].px = mx; pts[0].py = my;      // pin staff to cursor
-      for (let i = 1; i < N; i++) { const p = pts[i]; const vx = (p.x - p.px) * FRIC, vy = (p.y - p.py) * FRIC + GRAV; p.px = p.x; p.py = p.y; p.x += vx; p.y += vy; }
-      for (let k = 0; k < 7; k++) { for (let i = 1; i < N; i++) { const a = pts[i - 1], b = pts[i]; let dx = b.x - a.x, dy = b.y - a.y; let d = Math.hypot(dx, dy) || 0.001; let diff = (d - SEG) / d; if (i === 1) { b.x -= dx * diff; b.y -= dy * diff; } else { a.x += dx * diff * 0.5; a.y += dy * diff * 0.5; b.x -= dx * diff * 0.5; b.y -= dy * diff * 0.5; } } pts[0].x = mx; pts[0].y = my; }
+      pts[0].x = mx; pts[0].y = my;                        // staff pinned to the cursor
+      for (let i = 1; i < N; i++) {                        // integrate momentum + gravity
+        const p = pts[i], vx = (p.x - p.px) * DAMP, vy = (p.y - p.py) * DAMP + GRAV;
+        p.px = p.x; p.py = p.y; p.x += vx; p.y += vy;
+      }
+      for (let i = 1; i < N; i++) {                         // INEXTENSIBLE: each link exactly SEG (no stretch)
+        const a = pts[i - 1], b = pts[i];
+        let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 0.0001;
+        b.x = a.x + dx / d * SEG; b.y = a.y + dy / d * SEG;
+      }
+      const target = hvx > 0.4 ? -1 : hvx < -0.4 ? 1 : side; // reorient: flip which side the cloth billows
+      side += (target - side) * 0.09; hvx *= 0.85;
     }
     function draw(t) {
       ctx.clearRect(0, 0, W, H);
@@ -352,8 +370,8 @@
       for (let i = 0; i < N; i++) {
         const p = pts[i], q = pts[Math.max(0, i - 1)];
         let dx = p.x - q.x, dy = p.y - q.y, d = Math.hypot(dx, dy) || 1, nx = -dy / d, ny = dx / d;
-        const taper = 1 - i / N, width = 44 * taper + 5, flutter = Math.sin(t * 0.007 - i * 0.55) * 10 * taper;
-        top.push(p); bot.push({ x: p.x + nx * (width + flutter), y: p.y + ny * (width + flutter) });
+        const taper = 1 - i / N, w = (42 * taper + 5) * side, flutter = Math.sin(t * 0.006 - i * 0.5) * 9 * taper * side;
+        top.push(p); bot.push({ x: p.x + nx * (w + flutter), y: p.y + ny * (w + flutter) });
       }
       ctx.beginPath(); ctx.moveTo(top[0].x, top[0].y);
       for (let i = 1; i < N; i++) ctx.lineTo(top[i].x, top[i].y);
@@ -371,6 +389,41 @@
     }
     function loop(t) { if (active) started = true; physics(); if (started) draw(t); requestAnimationFrame(loop); }
     requestAnimationFrame(loop);
+  }
+
+  /* ---- Mobile: a small silk flag that reacts to scrolling (fades when idle) - */
+  if (!RM && !window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
+    const cv = document.createElement("canvas");
+    cv.className = "flag-scroll";
+    document.body.appendChild(cv);
+    const ctx = cv.getContext("2d");
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const CW = 118, CH = 150;
+    cv.width = CW * dpr; cv.height = CH * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const sx = 16, sy = 14, N = 12, seg = 8;
+    let phase = 0, wind = 0, op = 0, lastY = window.scrollY;
+    window.addEventListener("scroll", () => { const dy = window.scrollY - lastY; lastY = window.scrollY; wind = Math.min(4, wind + Math.abs(dy) * 0.06); }, { passive: true });
+    function frame() {
+      phase += 0.05 + wind * 0.03; wind *= 0.94;
+      op += ((wind > 0.06 ? 1 : 0) - op) * 0.06;
+      ctx.clearRect(0, 0, CW, CH);
+      if (op > 0.02) {
+        ctx.globalAlpha = op * 0.85;
+        ctx.strokeStyle = "rgba(156,51,94,.7)"; ctx.lineWidth = 2.4; ctx.lineCap = "round";
+        ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(sx, sy + 124); ctx.stroke();
+        const top = [], bot = [], amp = 5 + wind * 6;
+        for (let i = 0; i <= N; i++) { const x = sx + i * seg, y = sy + Math.sin(phase - i * 0.5) * amp * (i / N); top.push({ x, y }); bot.push({ x, y: y + 30 * (1 - i / N) + 6 }); }
+        ctx.beginPath(); ctx.moveTo(top[0].x, top[0].y);
+        for (let i = 1; i <= N; i++) ctx.lineTo(top[i].x, top[i].y);
+        for (let i = N; i >= 0; i--) ctx.lineTo(bot[i].x, bot[i].y);
+        ctx.closePath();
+        const g = ctx.createLinearGradient(sx, sy, sx + N * seg, sy);
+        g.addColorStop(0, "#f3c55e"); g.addColorStop(0.5, "#c0308c"); g.addColorStop(1, "#9c335e");
+        ctx.fillStyle = g; ctx.fill(); ctx.globalAlpha = 1;
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   }
 
   /* ---- Premium: spotlight that follows the cursor across cards ------------- */
