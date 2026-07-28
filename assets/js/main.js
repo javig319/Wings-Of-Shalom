@@ -345,24 +345,15 @@
     let W, H;
     const resize = () => { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
     resize(); window.addEventListener("resize", resize);
-    const N = 22, SEG = 8, GRAV = 0.45, DAMP = 0.9;       // inextensible chain: gravity + momentum
-    let mx = innerWidth / 2, my = innerHeight / 2, hvx = 0, side = 1, active = false, started = false;
+    const N = 20, SEG = 9, GRAV = 0.55, FRIC = 0.86;      // verlet cloth: gravity + momentum
+    let mx = innerWidth / 2, my = innerHeight / 2, active = false, started = false;
     const pts = Array.from({ length: N }, () => ({ x: mx, y: my, px: mx, py: my }));
-    window.addEventListener("pointermove", (e) => { hvx = e.clientX - mx; mx = e.clientX; my = e.clientY; active = true; }, { passive: true });
+    window.addEventListener("pointermove", (e) => { mx = e.clientX; my = e.clientY; active = true; }, { passive: true });
     document.addEventListener("mouseleave", () => { active = false; });
     function physics() {
-      pts[0].x = mx; pts[0].y = my;                        // staff pinned to the cursor
-      for (let i = 1; i < N; i++) {                        // integrate momentum + gravity
-        const p = pts[i], vx = (p.x - p.px) * DAMP, vy = (p.y - p.py) * DAMP + GRAV;
-        p.px = p.x; p.py = p.y; p.x += vx; p.y += vy;
-      }
-      for (let i = 1; i < N; i++) {                         // INEXTENSIBLE: each link exactly SEG (no stretch)
-        const a = pts[i - 1], b = pts[i];
-        let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 0.0001;
-        b.x = a.x + dx / d * SEG; b.y = a.y + dy / d * SEG;
-      }
-      const target = hvx > 0.4 ? -1 : hvx < -0.4 ? 1 : side; // reorient: flip which side the cloth billows
-      side += (target - side) * 0.09; hvx *= 0.85;
+      pts[0].x = mx; pts[0].y = my; pts[0].px = mx; pts[0].py = my;      // pin staff to cursor
+      for (let i = 1; i < N; i++) { const p = pts[i]; const vx = (p.x - p.px) * FRIC, vy = (p.y - p.py) * FRIC + GRAV; p.px = p.x; p.py = p.y; p.x += vx; p.y += vy; }
+      for (let k = 0; k < 7; k++) { for (let i = 1; i < N; i++) { const a = pts[i - 1], b = pts[i]; let dx = b.x - a.x, dy = b.y - a.y; let d = Math.hypot(dx, dy) || 0.001; let diff = (d - SEG) / d; if (i === 1) { b.x -= dx * diff; b.y -= dy * diff; } else { a.x += dx * diff * 0.5; a.y += dy * diff * 0.5; b.x -= dx * diff * 0.5; b.y -= dy * diff * 0.5; } } pts[0].x = mx; pts[0].y = my; }
     }
     function draw(t) {
       ctx.clearRect(0, 0, W, H);
@@ -370,8 +361,8 @@
       for (let i = 0; i < N; i++) {
         const p = pts[i], q = pts[Math.max(0, i - 1)];
         let dx = p.x - q.x, dy = p.y - q.y, d = Math.hypot(dx, dy) || 1, nx = -dy / d, ny = dx / d;
-        const taper = 1 - i / N, w = (42 * taper + 5) * side, flutter = Math.sin(t * 0.006 - i * 0.5) * 9 * taper * side;
-        top.push(p); bot.push({ x: p.x + nx * (w + flutter), y: p.y + ny * (w + flutter) });
+        const taper = 1 - i / N, width = 44 * taper + 5, flutter = Math.sin(t * 0.007 - i * 0.55) * 10 * taper;
+        top.push(p); bot.push({ x: p.x + nx * (width + flutter), y: p.y + ny * (width + flutter) });
       }
       ctx.beginPath(); ctx.moveTo(top[0].x, top[0].y);
       for (let i = 1; i < N; i++) ctx.lineTo(top[i].x, top[i].y);
