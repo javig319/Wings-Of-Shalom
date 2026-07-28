@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Wings of Shalom</title>
+  <meta name="description" content="Get in touch with Wings of Shalom — questions, custom flags, bookings, and prayer.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-600.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <script defer src="assets/js/products.js"></script>
+  <script defer src="assets/js/components.js"></script>
+  <script defer src="assets/js/store.js"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+  <section class="band royal" style="padding:10rem 0 3.5rem;position:relative;overflow:hidden">
+    <div class="aurora" style="opacity:.5"><i></i><i></i><i></i></div>
+    <div class="container" style="position:relative;z-index:2">
+      <span class="eyebrow" style="color:var(--gold-400)" data-reveal>Say Hello</span>
+      <h1 data-reveal data-reveal-delay="1" style="color:#fff">Contact Us</h1>
+      <p class="lead" data-reveal data-reveal-delay="2" style="color:#e9ddfb;max-width:58ch">Questions, custom orders, bookings, or prayer — we'd love to hear from you. <em>[placeholder]</em></p>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container grid cols-2" style="gap:var(--sp-6);align-items:start">
+      <div class="card" data-reveal="left"><div class="pad">
+        <h3>Send a message</h3>
+        <form onsubmit="WOS.toast('Thanks! (Wire this form to your email service.)');return false">
+          <div class="row-2"><div class="field"><label>First name</label><input class="input" required></div><div class="field"><label>Last name</label><input class="input"></div></div>
+          <div class="field"><label>Email</label><input class="input" type="email" required></div>
+          <div class="field"><label>Subject</label><input class="input"></div>
+          <div class="field"><label>Message</label><textarea class="textarea" required></textarea></div>
+          <button class="btn block lg" type="submit">Send message</button>
+          <p class="small" style="color:var(--text-faint);margin-top:.6rem">[Connect to Formspree / your email service — placeholder handler.]</p>
+        </form>
+      </div></div>
+      <div data-reveal="right">
+        <div class="card" style="margin-bottom:1.1rem"><div class="pad flex" style="gap:1rem"><span class="ic feature-ic" style="width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600)">✉</span><div><strong>Email</strong><br><a href="mailto:hello@wingsofshalom.org">hello@wingsofshalom.org</a> <span class="small" style="color:var(--text-faint)">[placeholder]</span></div></div></div>
+        <div class="card" style="margin-bottom:1.1rem"><div class="pad flex" style="gap:1rem"><span class="ic feature-ic" style="width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600)">☎</span><div><strong>Phone</strong><br>[+1 000 000 0000 — placeholder]</div></div></div>
+        <div class="card" style="margin-bottom:1.1rem"><div class="pad flex" style="gap:1rem"><span class="ic feature-ic" style="width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--lilac-100);color:var(--brand-600)">📍</span><div><strong>Location</strong><br>[City, Country — placeholder]</div></div></div>
+        <div class="card"><div class="pad"><strong>Follow along</strong><div class="socials" style="margin-top:.7rem">
+          <a href="#" aria-label="Facebook" style="background:var(--lilac-100);color:var(--brand-600)">f</a>
+          <a href="#" aria-label="Instagram" style="background:var(--lilac-100);color:var(--brand-600)">◎</a>
+          <a href="#" aria-label="YouTube" style="background:var(--lilac-100);color:var(--brand-600)">▶</a>
+        </div></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+</body>
+</html>

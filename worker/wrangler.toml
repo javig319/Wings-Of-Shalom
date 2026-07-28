@@ -1,0 +1,17 @@
+# Cloudflare Worker config for the Wings of Shalom Stripe checkout.
+# Deploy with:  wrangler deploy   (from inside the worker/ folder)
+name = "wings-of-shalom-checkout"
+main = "checkout.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+# The exact origin your site is served from (no trailing slash). Used for CORS
+# and the Stripe success/cancel redirect URLs. Update after you know your domain.
+ALLOWED_ORIGIN = "https://javig319.github.io"
+SUCCESS_URL = "https://javig319.github.io/wings-of-shalom/success.html"
+CANCEL_URL  = "https://javig319.github.io/wings-of-shalom/cancel.html"
+# Set to "on" only after you enable Stripe Tax in the dashboard.
+STRIPE_TAX = "off"
+
+# STRIPE_SECRET_KEY is a SECRET, never put it here. Set it with:
+#   wrangler secret put STRIPE_SECRET_KEY

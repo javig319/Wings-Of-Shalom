@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.log
+.wrangler/
+.dev.vars
+npm-debug.log*
+scripts/shot-*.png

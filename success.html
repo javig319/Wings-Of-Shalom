@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thank You! — Wings of Shalom</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <script defer src="assets/js/products.js"></script>
+  <script defer src="assets/js/components.js"></script>
+  <script defer src="assets/js/store.js"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+  <section class="hero" style="min-height:80svh">
+    <div class="aurora"><i></i><i></i><i></i></div>
+    <div class="stars"></div>
+    <div class="container text-center" style="position:relative;z-index:3">
+      <div style="font-size:4rem" class="float">🎉</div>
+      <span class="eyebrow" style="justify-content:center;color:var(--gold-400)">Order confirmed</span>
+      <h1 style="color:#fff">Thank you &amp; be blessed!</h1>
+      <p class="lead" style="color:#d9ccf3;max-width:50ch;margin-inline:auto">
+        Your order is in — a receipt is on its way to your email. We'll craft and ship your flags with care.
+        <em>[placeholder confirmation copy]</em></p>
+      <div class="flex center wrap" style="margin-top:1.6rem">
+        <a class="btn lg gold" href="worship-flags.html">Continue shopping</a>
+        <a class="btn lg ghost" href="index.html">Back home</a>
+      </div>
+    </div>
+    <div class="hero-fade"></div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script>
+  // Clear the basket after a successful Stripe redirect.
+  document.addEventListener("DOMContentLoaded", function () {
+    try { if (window.WOS && WOS.cart) WOS.cart.clear(); } catch (e) {}
+  });
+</script>
+</body>
+</html>

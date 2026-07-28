@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout — Wings of Shalom</title>
+  <meta name="description" content="Secure checkout for your Wings of Shalom worship flags.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <script defer src="assets/js/products.js"></script>
+  <script defer src="assets/js/components.js"></script>
+  <script defer src="assets/js/store.js"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="section" style="padding-top:9rem">
+    <div class="container">
+      <span class="eyebrow">Almost there</span>
+      <h1>Checkout</h1>
+      <div class="checkout-grid" style="margin-top:var(--sp-4)">
+        <!-- Left: what happens next -->
+        <div class="card"><div class="pad">
+          <h3>How checkout works</h3>
+          <ol style="color:var(--text-soft);line-height:1.9;padding-left:1.2rem">
+            <li>Review your order on the right.</li>
+            <li>Tap <strong>Pay securely</strong> — you'll go to our encrypted Stripe checkout.</li>
+            <li>Enter your <strong>card, shipping address &amp; contact info</strong> there. We never see your card details.</li>
+            <li>You'll return here to a confirmation, and we'll ship your flags.</li>
+          </ol>
+          <div class="field" style="margin-top:1rem">
+            <label for="notes">Order notes (optional)</label>
+            <textarea class="textarea" id="notes" placeholder="Colour preferences, event date, dedication…"></textarea>
+          </div>
+          <div class="trust-row" style="justify-content:flex-start;margin-top:.4rem">
+            <span>🔒 256-bit encryption</span><span>Powered by Stripe</span><span>💳 Cards · Apple Pay · Google Pay</span>
+          </div>
+        </div></div>
+
+        <!-- Right: order summary -->
+        <div class="card order-summary"><div class="pad">
+          <h3>Your Order</h3>
+          <div id="checkout-summary"></div>
+          <button class="btn block lg" id="pay-btn" style="margin-top:1.2rem">Pay securely →</button>
+          <div class="secure-note" style="justify-content:center">🔒 Encrypted &amp; secure. Shipping calculated in cart; tax at payment.</div>
+          <a class="btn ghost block sm" href="worship-flags.html" style="margin-top:.6rem">← Keep shopping</a>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+</body>
+</html>
