@@ -54,7 +54,7 @@
           ${langMenu}
           <div id="google_translate_element" aria-hidden="true"></div>
         </div>
-        <button class="cart-btn sound-btn" data-sound-toggle aria-label="Play or mute background hymns" title="Background hymns"></button>
+        <button class="cart-btn sound-btn" data-sound-toggle aria-label="Play or mute background hymns" title="Background hymns"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 17V4l10-2v12"/><circle cx="6.5" cy="18" r="2.6"/><circle cx="16.5" cy="16" r="2.6"/><line x1="3" y1="3.5" x2="21" y2="21" stroke-width="2.1"/></svg></button>
         <button class="cart-btn" data-open-cart aria-label="Open order list">${cartSVG}<span class="cart-count">0</span></button>
         <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
