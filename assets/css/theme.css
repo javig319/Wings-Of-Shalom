@@ -545,6 +545,49 @@ body{top:0!important}
   [data-reveal]{opacity:1!important;transform:none!important}
 }
 
+/* ---------- 14b. Dynamic enhancements -------------------------------------- */
+/* Scroll progress bar */
+.progress-bar{position:fixed;top:0;left:0;height:3px;z-index:150;width:0;
+  background:var(--grad-text);box-shadow:0 0 12px rgba(124,58,237,.6);
+  transition:width .1s linear}
+/* Nav auto-hide on scroll-down */
+.nav{transition:background var(--t) var(--ease),box-shadow var(--t) var(--ease),
+  padding var(--t) var(--ease),transform .4s var(--ease-out)}
+.nav.nav-hidden{transform:translateY(-105%)}
+/* Animated gradient shimmer on gradient text */
+.grad-text{background-size:220% auto}
+@media (prefers-reduced-motion:no-preference){
+  .grad-text{animation:shimmer 7s ease-in-out infinite}
+  .stat b{background-size:220% auto;animation:shimmer 7s ease-in-out infinite}
+}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+/* Back-to-top FAB */
+.to-top{position:fixed;right:1.4rem;bottom:1.4rem;z-index:140;width:52px;height:52px;
+  border-radius:50%;border:none;background:var(--grad-brand);color:#fff;display:grid;
+  place-items:center;box-shadow:var(--sh-brand);cursor:pointer;opacity:0;visibility:hidden;
+  transform:translateY(18px) scale(.8);
+  transition:opacity var(--t),visibility var(--t),transform var(--t) var(--ease-spring)}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{transform:translateY(-3px) scale(1.06)}
+.to-top svg{width:22px;height:22px}
+/* Product image shine sweep on hover */
+.product .media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);
+  transform:translateX(-130%);transition:transform .1s}
+.product:hover .media::after{animation:sheen 1s var(--ease) forwards}
+/* Clip-path wipe reveal for media */
+[data-reveal="wipe"]{opacity:1;clip-path:inset(0 100% 0 0);transform:none;
+  transition:clip-path .9s var(--ease-out)}
+[data-reveal="wipe"].in{clip-path:inset(0 0 0 0)}
+/* Blur-rise reveal */
+[data-reveal="rise"]{opacity:0;transform:translateY(34px);filter:blur(8px);
+  transition:opacity .8s var(--ease-out),transform .8s var(--ease-out),filter .8s var(--ease-out)}
+[data-reveal="rise"].in{opacity:1;transform:none;filter:none}
+/* Pointer-reactive hero layers (JS sets --mx/--my) */
+.hero .aurora{transition:transform .6s var(--ease-out)}
+.hero.parallax-on .aurora{transform:translate(calc(var(--mx,0)*14px),calc(var(--my,0)*14px))}
+.hero.parallax-on .stars{transform:translate(calc(var(--mx,0)*-8px),calc(var(--my,0)*-8px))}
+
 /* ---------- 15. Utilities & responsive ------------------------------------- */
 .hide{display:none!important}
 .mt-0{margin-top:0}.mb-0{margin-bottom:0}

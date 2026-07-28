@@ -253,6 +253,47 @@
     toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2600);
   };
 
+  /* ---- Scroll progress bar + nav auto-hide + back-to-top ------------------- */
+  const bar = document.createElement("div"); bar.className = "progress-bar"; document.body.appendChild(bar);
+  const toTop = document.createElement("button");
+  toTop.className = "to-top"; toTop.setAttribute("aria-label", "Back to top");
+  toTop.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+  document.body.appendChild(toTop);
+  toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: RM ? "auto" : "smooth" }));
+
+  let lastY = window.scrollY, navTick = false;
+  function onScrollUI() {
+    const y = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+    toTop.classList.toggle("show", y > 600);
+    if (nav) {
+      if (y > 240 && y > lastY + 6) nav.classList.add("nav-hidden");
+      else if (y < lastY - 6 || y < 240) nav.classList.remove("nav-hidden");
+    }
+    lastY = y; navTick = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!navTick) { requestAnimationFrame(onScrollUI); navTick = true; }
+  }, { passive: true });
+  onScrollUI();
+
+  /* ---- Hero pointer parallax ---------------------------------------------- */
+  if (!RM && window.matchMedia("(pointer:fine)").matches) {
+    const hero = $(".hero");
+    if (hero) {
+      hero.classList.add("parallax-on");
+      hero.addEventListener("pointermove", (e) => {
+        const r = hero.getBoundingClientRect();
+        hero.style.setProperty("--mx", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+        hero.style.setProperty("--my", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+      });
+      hero.addEventListener("pointerleave", () => {
+        hero.style.setProperty("--mx", "0"); hero.style.setProperty("--my", "0");
+      });
+    }
+  }
+
   /* ---- Year in footer ------------------------------------------------------ */
   $$("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 })();
