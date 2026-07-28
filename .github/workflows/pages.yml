@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [main]
+    branches: [claude/wings-shalom-redesign-r95o5p, main]
   workflow_dispatch:
 permissions:
   contents: read
