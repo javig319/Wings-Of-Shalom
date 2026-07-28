@@ -41,6 +41,7 @@
     }, 50);
   }
   function start() {
+    if (playing) return;
     ensure();
     var pr = audio.play();
     if (pr && pr.then) pr.then(function () { playing = true; fadeTo(VOL, 1400); paint(); })
@@ -67,6 +68,13 @@
 
   if (document.readyState !== "loading") setTimeout(paint, 30);
   else document.addEventListener("DOMContentLoaded", function () { setTimeout(paint, 30); });
+
+  // ON by default: try to autoplay immediately (browsers that allow it start now;
+  // the rest start on the visitor's first click/tap — see firstGesture above).
+  if (wantOn) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+    else start();
+  }
 
   window.WOS_MUSIC = { start: start, stop: stop, toggle: toggle };
 })();
