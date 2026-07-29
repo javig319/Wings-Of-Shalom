@@ -428,6 +428,27 @@
     }, { passive: true });
   }
 
+  /* ---- Mobile: soft white tap ripple -------------------------------------- */
+  if (!RM && window.matchMedia("(hover:none), (pointer:coarse)").matches) {
+    const SEL = ".btn,.card,.product,.stat-card,.chip,.opt,.lang-menu button,.lang-mobile button,.team-card,.feature";
+    document.addEventListener("pointerdown", (e) => {
+      const t = e.target.closest(SEL);
+      if (!t) return;
+      const cs = getComputedStyle(t);
+      if (cs.position === "static") t.style.position = "relative";
+      if (cs.overflow !== "hidden") t.style.overflow = "hidden";
+      const r = t.getBoundingClientRect();
+      const size = Math.max(r.width, r.height) * 1.7;
+      const rip = document.createElement("span");
+      rip.className = "tap-ripple";
+      rip.style.width = rip.style.height = size + "px";
+      rip.style.left = (e.clientX - r.left - size / 2) + "px";
+      rip.style.top = (e.clientY - r.top - size / 2) + "px";
+      t.appendChild(rip);
+      setTimeout(() => rip.remove(), 640);
+    }, { passive: true });
+  }
+
   /* ---- Year in footer ------------------------------------------------------ */
   $$("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 })();
