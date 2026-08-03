@@ -838,3 +838,32 @@ body{top:0!important}
   animation:tap-ripple .6s var(--ease-out) forwards}
 @keyframes tap-ripple{to{transform:scale(1);opacity:0}}
 @media (prefers-reduced-motion:reduce){.tap-ripple{display:none!important}}
+
+/* ---- Ministry Journey timeline + video embeds ---- */
+.journey{position:relative;padding-left:0}
+.journey-item{position:relative;margin-bottom:var(--sp-5)}
+.journey-item:last-child{margin-bottom:0}
+.journey-body{background:var(--surface,#fff);border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--sh-2);padding:1.8rem;position:relative}
+.journey-marker{position:absolute;left:-11px;top:2rem;width:20px;height:20px;border-radius:50%;
+  background:var(--grad-gold);box-shadow:0 0 0 5px rgba(231,169,59,.18);z-index:2}
+@media (min-width:820px){
+  .journey{padding-left:2.6rem;border-left:2px solid var(--line)}
+  .journey-marker{left:-3.35rem}
+}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem}
+.video-grid.one{grid-template-columns:1fr;max-width:640px}
+@media (max-width:640px){.video-grid{grid-template-columns:1fr}}
+.video-frame{position:relative;aspect-ratio:16/9;border-radius:var(--r-md,14px);overflow:hidden;
+  box-shadow:var(--sh-3);background:#000}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ---- Contact bilingual ministry name band ---- */
+.name-band{padding:2.4rem 0 .5rem;text-align:center}
+.name-pair{display:inline-flex;align-items:baseline;justify-content:center;gap:1rem;flex-wrap:wrap}
+.name-pair .np-en{font-family:var(--font-display,var(--font-heading));font-weight:700;
+  font-size:clamp(1.8rem,4.6vw,2.8rem);color:var(--brand-700);line-height:1.05}
+.name-pair .np-zh{font-weight:700;font-size:clamp(1.8rem,4.6vw,2.8rem);color:var(--brand-600);line-height:1.05}
+.name-pair .np-sep{color:var(--gold-500,#e7a93b);font-size:clamp(1.4rem,4vw,2.2rem);opacity:.8}
+
+.pb-0{padding-bottom:0!important}

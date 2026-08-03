@@ -10,6 +10,7 @@
     { label: "Home", href: "index.html" },
     { label: "About Us", href: "about.html" },
     { label: "Programs", href: "programs.html" },
+    { label: "Ministry Journey", href: "ministry-journey.html" },
     { label: "Testimonies", href: "testimonies.html" },
     { label: "Our Team", href: "our-team.html" },
     { label: "Worship Flags", href: "worship-flags.html" },
@@ -93,7 +94,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>${year}</span> Wings of Shalom · A 501(c)(3) Nonprofit Organization</span>
+        <span>© <span data-year>${year}</span> <span class="notranslate" translate="no">Wings of Shalom</span> · A 501(c)(3) Nonprofit Organization</span>
         <span style="display:flex;gap:1.2rem"><a href="contact.html">Contact</a><a href="worship-flags.html">Worship Flags</a></span>
       </div>
     </div>

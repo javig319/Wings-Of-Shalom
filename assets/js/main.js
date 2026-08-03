@@ -335,53 +335,6 @@
     }
   }
 
-  /* ---- Premium: realistic trailing silk-flag cursor ----------------------- */
-  if (!RM && window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
-    const cv = document.createElement("canvas");
-    cv.className = "flag-cursor";
-    document.body.appendChild(cv);
-    const ctx = cv.getContext("2d");
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let W, H;
-    const resize = () => { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
-    resize(); window.addEventListener("resize", resize);
-    const N = 20, SEG = 9, GRAV = 0.55, FRIC = 0.86;      // verlet cloth: gravity + momentum
-    let mx = innerWidth / 2, my = innerHeight / 2, active = false, started = false;
-    const pts = Array.from({ length: N }, () => ({ x: mx, y: my, px: mx, py: my }));
-    window.addEventListener("pointermove", (e) => { mx = e.clientX; my = e.clientY; active = true; }, { passive: true });
-    document.addEventListener("mouseleave", () => { active = false; });
-    function physics() {
-      pts[0].x = mx; pts[0].y = my; pts[0].px = mx; pts[0].py = my;      // pin staff to cursor
-      for (let i = 1; i < N; i++) { const p = pts[i]; const vx = (p.x - p.px) * FRIC, vy = (p.y - p.py) * FRIC + GRAV; p.px = p.x; p.py = p.y; p.x += vx; p.y += vy; }
-      for (let k = 0; k < 7; k++) { for (let i = 1; i < N; i++) { const a = pts[i - 1], b = pts[i]; let dx = b.x - a.x, dy = b.y - a.y; let d = Math.hypot(dx, dy) || 0.001; let diff = (d - SEG) / d; if (i === 1) { b.x -= dx * diff; b.y -= dy * diff; } else { a.x += dx * diff * 0.5; a.y += dy * diff * 0.5; b.x -= dx * diff * 0.5; b.y -= dy * diff * 0.5; } } pts[0].x = mx; pts[0].y = my; }
-    }
-    function draw(t) {
-      ctx.clearRect(0, 0, W, H);
-      const top = [], bot = [];
-      for (let i = 0; i < N; i++) {
-        const p = pts[i], q = pts[Math.max(0, i - 1)];
-        let dx = p.x - q.x, dy = p.y - q.y, d = Math.hypot(dx, dy) || 1, nx = -dy / d, ny = dx / d;
-        const taper = 1 - i / N, width = 44 * taper + 5, flutter = Math.sin(t * 0.007 - i * 0.55) * 10 * taper;
-        top.push(p); bot.push({ x: p.x + nx * (width + flutter), y: p.y + ny * (width + flutter) });
-      }
-      ctx.beginPath(); ctx.moveTo(top[0].x, top[0].y);
-      for (let i = 1; i < N; i++) ctx.lineTo(top[i].x, top[i].y);
-      for (let i = N - 1; i >= 0; i--) ctx.lineTo(bot[i].x, bot[i].y);
-      ctx.closePath();
-      const g = ctx.createLinearGradient(pts[0].x, pts[0].y, pts[N - 1].x, pts[N - 1].y);
-      g.addColorStop(0, "#f3c55e"); g.addColorStop(0.4, "#e14a8b"); g.addColorStop(0.75, "#c0308c"); g.addColorStop(1, "#9c335e");
-      ctx.save();
-      ctx.shadowColor = "rgba(120,25,60,.4)"; ctx.shadowBlur = 12; ctx.shadowOffsetY = 4;
-      ctx.fillStyle = g; ctx.globalAlpha = 0.85; ctx.fill();
-      ctx.restore();
-      ctx.globalAlpha = 0.5; ctx.strokeStyle = "rgba(255,255,255,.6)"; ctx.lineWidth = 1.2;
-      ctx.beginPath(); ctx.moveTo(top[0].x, top[0].y); for (let i = 1; i < N; i++) ctx.lineTo(top[i].x, top[i].y); ctx.stroke();
-      ctx.globalAlpha = 1;
-    }
-    function loop(t) { if (active) started = true; physics(); if (started) draw(t); requestAnimationFrame(loop); }
-    requestAnimationFrame(loop);
-  }
-
   /* ---- Mobile: a small silk flag that reacts to scrolling (fades when idle) - */
   if (!RM && !window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
     const cv = document.createElement("canvas");
@@ -448,6 +401,9 @@
       setTimeout(() => rip.remove(), 640);
     }, { passive: true });
   }
+
+  /* ---- Keep proper names untranslated by Google Translate ------------------ */
+  $$(".team-card h3, [data-noname]").forEach(el => { el.setAttribute("translate", "no"); el.classList.add("notranslate"); });
 
   /* ---- Year in footer ------------------------------------------------------ */
   $$("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
