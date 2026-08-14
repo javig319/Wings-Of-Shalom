@@ -51,7 +51,7 @@
       </nav>
       <div class="nav-actions">
         <div class="gt-wrap hide-mobile">
-          <button type="button" class="gt-pill" data-lang-toggle aria-haspopup="true" aria-expanded="false">${globeSVG}<span>Language</span>${chev}</button>
+          <button type="button" class="gt-pill" data-lang-toggle aria-haspopup="true" aria-expanded="false" aria-label="Language" title="Language">${globeSVG}<span class="gt-label">Language</span>${chev}</button>
           ${langMenu}
           <div id="google_translate_element" aria-hidden="true"></div>
         </div>

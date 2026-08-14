@@ -261,8 +261,8 @@ small,.small{font-size:.82rem}
 /* ---------- 8. Navigation + Google Translate ------------------------------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background var(--t) var(--ease),
   box-shadow var(--t) var(--ease),padding var(--t) var(--ease);padding:1.1rem 0}
-.nav-inner{display:flex;align-items:center;gap:1.4rem;
-  width:min(100% - 2.5rem,var(--maxw));margin-inline:auto}
+.nav-inner{display:flex;align-items:center;gap:1rem;
+  width:min(100% - 2rem,1320px);margin-inline:auto}
 .nav.scrolled{background:rgba(255,255,255,.72);backdrop-filter:blur(18px) saturate(180%);
   -webkit-backdrop-filter:blur(18px) saturate(180%);box-shadow:0 6px 24px rgba(59,20,102,.10);
   padding:.6rem 0;border-bottom:1px solid rgba(216,201,242,.6)}
@@ -272,18 +272,18 @@ small,.small{font-size:.82rem}
   background:var(--grad-royal);box-shadow:var(--sh-2);color:#fff;flex:0 0 auto}
 .brand .mark svg{width:24px;height:24px}
 .brand b{font-weight:700}.brand span{color:var(--brand-500)}
-.nav-links{display:flex;align-items:center;gap:.35rem}
-.nav-links a{position:relative;padding:.55rem .85rem;border-radius:var(--r-sm);font-weight:600;
-  font-size:.95rem;color:var(--text-soft);transition:color var(--t),background var(--t)}
-.nav-links a::after{content:"";position:absolute;left:.85rem;right:.85rem;bottom:.32rem;height:2px;
+.nav-links{display:flex;align-items:center;gap:.1rem}
+.nav-links a{position:relative;padding:.45rem .58rem;border-radius:var(--r-sm);font-weight:600;
+  font-size:.88rem;white-space:nowrap;color:var(--text-soft);transition:color var(--t),background var(--t)}
+.nav-links a::after{content:"";position:absolute;left:.58rem;right:.58rem;bottom:.28rem;height:2px;
   border-radius:2px;background:var(--grad-brand);transform:scaleX(0);transform-origin:left;
   transition:transform var(--t) var(--ease)}
 .nav-links a:hover,.nav-links a.active{color:var(--brand-600)}
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-.nav-actions{display:flex;align-items:center;gap:.7rem}
+.nav-actions{display:flex;align-items:center;gap:.5rem}
 
 /* Cart button */
-.cart-btn{position:relative;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);
+.cart-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
   background:var(--surface);display:grid;place-items:center;color:var(--text);
   transition:transform var(--t) var(--ease-spring),box-shadow var(--t),color var(--t)}
 .cart-btn:hover{transform:translateY(-2px) scale(1.06);box-shadow:var(--sh-2);color:var(--brand-600)}
@@ -297,9 +297,10 @@ small,.small{font-size:.82rem}
 
 /* Google Translate widget — restyled to a clean pill */
 .gt-wrap{position:relative;display:inline-flex;align-items:center}
-.gt-pill{display:inline-flex;align-items:center;gap:.45rem;height:44px;padding:0 .7rem 0 .85rem;
+.gt-pill{display:inline-flex;align-items:center;gap:.3rem;height:40px;padding:0 .55rem;
   border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);
   color:var(--text-soft);font-weight:600;font-size:.85rem;transition:box-shadow var(--t),color var(--t)}
+.gt-pill .gt-label{display:none}
 .gt-pill:hover{color:var(--brand-600);box-shadow:var(--sh-1)}
 .gt-pill svg{width:18px;height:18px;flex:0 0 auto}
 /* Google injects a <select>; we overlay it invisibly on the pill for native behaviour */
@@ -599,8 +600,8 @@ body{top:0!important}
 .nav.scrolled{background:var(--brand-700);backdrop-filter:none;-webkit-backdrop-filter:none;
   border-bottom:1px solid rgba(255,255,255,.12)}
 .brand{color:#fff}
-.brand .logo-img{height:52px;width:auto;display:block}
-.nav.scrolled .brand .logo-img{height:44px;transition:height var(--t)}
+.brand .logo-img{height:46px;width:auto;display:block}
+.nav.scrolled .brand .logo-img{height:40px;transition:height var(--t)}
 .nav-links a{color:rgba(255,255,255,.9)}
 .nav-links a:hover,.nav-links a.active{color:#fff}
 .nav-links a::after{background:var(--gold-400)}
