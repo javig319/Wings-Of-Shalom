@@ -876,3 +876,6 @@ body{top:0!important}
 /* ---- Ministry Journey: retreat two-up ---- */
 .retreat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem}
 @media (max-width:640px){.retreat-grid{grid-template-columns:1fr}}
+
+/* Anchor offset so #our-story clears the fixed header */
+#our-story{scroll-margin-top:96px}
