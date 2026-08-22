@@ -1,0 +1,3 @@
+# Drive "New Edits" folders already applied to the site (one Drive folder ID per line).
+# The weekly auto-editor Routine skips any folder ID listed here.
+1a992Ao2IZV0ZGhhsBJ-BiR8xNNgZDYsA
