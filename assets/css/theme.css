@@ -879,3 +879,12 @@ body{top:0!important}
 
 /* Anchor offset so #our-story clears the fixed header */
 #our-story{scroll-margin-top:96px}
+
+/* ---- Home hero: show the full title artwork, content anchored at bottom ---- */
+.home-hero{align-items:end;min-height:clamp(60svh,56.25vw,88svh);
+  padding:6.5rem 1rem 3rem}
+.home-hero .bg{background:var(--plum-900)}
+.home-hero .bg img{object-fit:contain;object-position:center center}
+@media (prefers-reduced-motion:no-preference){
+  .home-hero .bg img{animation:none;transform:none}
+}
