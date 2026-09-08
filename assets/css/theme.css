@@ -888,3 +888,8 @@ body{top:0!important}
 @media (prefers-reduced-motion:no-preference){
   .home-hero .bg img{animation:none;transform:none}
 }
+
+/* ---- Home hero (Sept 7): title artwork in the foreground, content centred ---- */
+.home-hero{align-items:center}
+.home-hero .inner .hero-name{display:block;margin:0 auto .8rem;width:auto;
+  max-width:min(680px,90vw);height:auto;filter:drop-shadow(0 8px 26px rgba(0,0,0,.5))}
