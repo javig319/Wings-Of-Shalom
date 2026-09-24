@@ -893,3 +893,6 @@ body{top:0!important}
 .home-hero{align-items:center}
 .home-hero .inner .hero-name{display:block;margin:0 auto .8rem;width:auto;
   max-width:min(680px,90vw);height:auto;filter:drop-shadow(0 8px 26px rgba(0,0,0,.5))}
+
+/* ---- Home hero (Sept 24): photo background fills the frame again ---- */
+.home-hero .bg img{object-fit:cover;object-position:center center}
