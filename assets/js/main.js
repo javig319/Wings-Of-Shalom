@@ -213,8 +213,8 @@
     let W = 0, H = 0, ribbons = [], running = true;
 
     const palette = [
-      ["#7c3aed", "#b794f6"], ["#e0559b", "#f472b6"],
-      ["#e0a92e", "#f0c45a"], ["#5b21b6", "#9061f0"], ["#3fd0c9", "#7c3aed"]
+      ["#17295F", "#3C5290"], ["#00092D", "#2E4FA8"],
+      ["#e0a92e", "#f0c45a"], ["#0B2E6B", "#5572C4"], ["#3fd0c9", "#1D6FA0"]
     ];
 
     function resize() {
@@ -353,7 +353,7 @@
       ctx.clearRect(0, 0, CW, CH);
       if (op > 0.02) {
         ctx.globalAlpha = op * 0.85;
-        ctx.strokeStyle = "rgba(156,51,94,.7)"; ctx.lineWidth = 2.4; ctx.lineCap = "round";
+        ctx.strokeStyle = "rgba(0,9,45,.7)"; ctx.lineWidth = 2.4; ctx.lineCap = "round";
         ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(sx, sy + 124); ctx.stroke();
         const top = [], bot = [], amp = 5 + wind * 6;
         for (let i = 0; i <= N; i++) { const x = sx + i * seg, y = sy + Math.sin(phase - i * 0.5) * amp * (i / N); top.push({ x, y }); bot.push({ x, y: y + 30 * (1 - i / N) + 6 }); }
@@ -362,7 +362,7 @@
         for (let i = N; i >= 0; i--) ctx.lineTo(bot[i].x, bot[i].y);
         ctx.closePath();
         const g = ctx.createLinearGradient(sx, sy, sx + N * seg, sy);
-        g.addColorStop(0, "#f3c55e"); g.addColorStop(0.5, "#c0308c"); g.addColorStop(1, "#9c335e");
+        g.addColorStop(0, "#f3c55e"); g.addColorStop(0.5, "#2E4FA8"); g.addColorStop(1, "#00092D");
         ctx.fillStyle = g; ctx.fill(); ctx.globalAlpha = 1;
       }
       requestAnimationFrame(frame);

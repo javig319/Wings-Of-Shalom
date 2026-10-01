@@ -1,6 +1,6 @@
 /* ============================================================================
    WINGS OF SHALOM — components.js
-   Shared header + footer (matches the live site: 7 pages, wine nav, real logo).
+   Shared header + footer (matches the live site: 8 pages, midnight-blue nav, real logo).
    Edit nav/footer ONCE here.
    ========================================================================== */
 (function () {
@@ -69,7 +69,7 @@
       <div class="cols">
         <div>
           <img src="assets/img/logo.png" alt="Wings of Shalom" style="height:96px;width:auto;margin-bottom:1rem">
-          <p style="color:#f3d9e6;max-width:36ch">Equipping believers to worship God through flags, movement, and heartfelt praise. <em>Worship · Prayer · Transformation.</em></p>
+          <p style="color:#D7E1F5;max-width:36ch">Equipping believers to worship God through flags, movement, and heartfelt praise. <em>Worship · Prayer · Transformation.</em></p>
           <div class="socials" style="margin-top:1.1rem">
             <a href="#" aria-label="Facebook">${fbSVG}</a>
             <a href="${YT}" target="_blank" rel="noopener" aria-label="YouTube">${ytSVG}</a>
@@ -89,8 +89,8 @@
         </div>
         <div>
           <h4>Translate</h4>
-          <p style="color:#f3d9e6">Read this site in your language.</p>
-          <button class="gt-pill" data-open-language style="cursor:pointer;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fbe9f1">${globeSVG}<span>Select language</span></button>
+          <p style="color:#D7E1F5">Read this site in your language.</p>
+          <button class="gt-pill" data-open-language style="cursor:pointer;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#E7EDF9">${globeSVG}<span>Select language</span></button>
         </div>
       </div>
       <div class="footer-bottom">
