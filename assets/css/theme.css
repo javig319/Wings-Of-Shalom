@@ -246,7 +246,7 @@ small,.small{font-size:.82rem}
 .glass{background:rgba(255,255,255,.62);backdrop-filter:blur(16px) saturate(160%);
   -webkit-backdrop-filter:blur(16px) saturate(160%);border:1px solid rgba(255,255,255,.55);
   box-shadow:var(--sh-2)}
-.on-dark .glass{background:rgba(40,20,70,.42);border-color:rgba(255,255,255,.12)}
+.on-dark .glass{background:rgba(0,12,48,.42);border-color:rgba(255,255,255,.12)}
 /* 3D tilt shell (JS-driven via --rx/--ry) */
 .tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
   transition:transform var(--t) var(--ease);transform-style:preserve-3d;will-change:transform}
@@ -443,7 +443,7 @@ body{top:0!important}
 .stars-row{display:flex;gap:2px;color:var(--gold-500);font-size:.85rem}
 
 /* Cart drawer */
-.drawer-scrim{position:fixed;inset:0;z-index:200;background:rgba(24,15,40,.5);
+.drawer-scrim{position:fixed;inset:0;z-index:200;background:rgba(0,9,45,.5);
   backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t)}
 .drawer-scrim.open{opacity:1;visibility:visible}
 .drawer{position:fixed;top:0;right:0;bottom:0;z-index:201;width:min(440px,100%);
@@ -475,7 +475,7 @@ body{top:0!important}
 .cart-empty svg{width:64px;height:64px;margin:0 auto 1rem;color:var(--lilac-200)}
 
 /* Product modal (quick view) */
-.modal-scrim{position:fixed;inset:0;z-index:210;background:rgba(24,15,40,.62);
+.modal-scrim{position:fixed;inset:0;z-index:210;background:rgba(0,9,45,.62);
   backdrop-filter:blur(6px);display:grid;place-items:center;padding:1.2rem;
   opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t)}
 .modal-scrim.open{opacity:1;visibility:visible}
@@ -614,10 +614,15 @@ body{top:0!important}
   .nav-links a{color:#fff;border-bottom-color:rgba(255,255,255,.14)}
 }
 /* Section-header wine pill (Our Story / Goals and Vision / …) */
-.sec-head{display:block;background:var(--brand-600);color:#fff;font-family:var(--font-display);
-  font-weight:700;font-size:clamp(1.3rem,2.5vw,2rem);text-align:center;padding:.5em 1.1em;
-  border-radius:6px;box-shadow:var(--sh-2);margin:0 0 1.3rem}
-.on-dark .sec-head{background:rgba(255,255,255,.14)}
+.sec-head{display:block;background:none;border:0;border-radius:0;box-shadow:none;
+  color:var(--brand-600);font-family:var(--font-display);
+  font-weight:700;font-size:clamp(1.55rem,2.9vw,2.2rem);line-height:1.25;
+  text-align:left;position:relative;padding:0 0 14px;margin:0 0 24px}
+.sec-head::after{content:"";position:absolute;left:0;bottom:0;
+  width:70px;height:2px;border-radius:2px;background:var(--grad-gold)}
+.sec-head.is-center{text-align:center}
+.sec-head.is-center::after{left:50%;transform:translateX(-50%)}
+.on-dark .sec-head{background:none;color:#EAF0FC}
 /* Calligraphy wordmark */
 .script-word{font-family:var(--font-script);font-weight:400;line-height:.95;
   font-size:clamp(2.8rem,9vw,6rem)}
@@ -627,7 +632,7 @@ body{top:0!important}
 .home-hero .bg{position:absolute;inset:0;z-index:0}
 .home-hero .bg img{width:100%;height:100%;object-fit:cover}
 .home-hero .bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,9,45,.45),rgba(0,6,25,.72))}
+  background:linear-gradient(180deg,rgba(10,32,96,.28),rgba(0,14,56,.52))}
 .home-hero .inner{position:relative;z-index:2;max-width:940px}
 .home-hero .emblem{width:min(380px,74vw);margin:0 auto .6rem;
   filter:drop-shadow(0 14px 34px rgba(0,0,0,.45))}
@@ -668,7 +673,7 @@ body{top:0!important}
 .collage .bg{position:absolute;inset:0;z-index:0}
 .collage .bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
 .collage .bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(251,233,241,.7),rgba(231,166,194,.55))}
+  background:linear-gradient(180deg,rgba(231,237,249,.72),rgba(169,184,220,.55))}
 .collage .container{position:relative;z-index:2}
 /* Content swipe-in (used on Our Story paragraphs) */
 [data-reveal="swipe"]{opacity:0;transform:translateX(-42px)}
@@ -725,7 +730,7 @@ body{top:0!important}
 /* Trailing cursor glow (desktop, motion-safe) */
 .cursor-glow{position:fixed;left:0;top:0;width:28px;height:28px;border-radius:50%;z-index:400;
   pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:0;
-  background:radial-gradient(circle,rgba(243,197,94,.9),rgba(224,85,155,.55) 45%,transparent 72%);
+  background:radial-gradient(circle,rgba(243,197,94,.9),rgba(47,82,168,.55) 45%,transparent 72%);
   transition:width .28s var(--ease),height .28s var(--ease),opacity .3s}
 .cursor-glow.big{width:70px;height:70px}
 @media (hover:none),(prefers-reduced-motion:reduce){.cursor-glow{display:none!important}}
@@ -734,7 +739,7 @@ body{top:0!important}
 .card,.stat-card,.product,.info-media,[data-glow]{position:relative}
 .card::after,.stat-card::after,.product::after,[data-glow]::after{content:"";position:absolute;inset:0;
   border-radius:inherit;pointer-events:none;opacity:0;z-index:2;transition:opacity .45s var(--ease);
-  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(224,85,155,.18),transparent 62%)}
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(47,82,168,.18),transparent 62%)}
 .card:hover::after,.stat-card:hover::after,.product:hover::after,[data-glow]:hover::after{opacity:1}
 /* Sheen sweep across media on hover */
 .info-media{overflow:hidden}
@@ -761,10 +766,7 @@ body{top:0!important}
 [data-reveal="pop"].in{opacity:1;transform:none;transition:opacity .7s var(--ease-out),transform .7s var(--ease-spring)}
 
 /* Sec-head shimmering underline accent */
-.sec-head{position:relative;overflow:hidden}
-.sec-head::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;
-  background:var(--grad-gold);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease-out)}
-.sec-head.in::after,[data-reveal].in .sec-head::after{transform:scaleX(1)}
+/* .sec-head underline is a short static gold rule (see .sec-head::after above) */
 
 /* Marquee tint on wine */
 .band.soft .marquee li{color:var(--brand-700)}
@@ -896,3 +898,45 @@ body{top:0!important}
 
 /* ---- Home hero (Sept 24): photo background fills the frame again ---- */
 .home-hero .bg img{object-fit:cover;object-position:center center}
+
+/* ---- Hero (Oct 1): brighter sapphire, title blended into the sky ---- */
+/* Lift the photo slightly so it reads as deep sapphire rather than near-black */
+.home-hero .bg img{filter:brightness(1.14) saturate(1.06)}
+/* Feather the title lockup's own rectangular sky so it melts into the hero.
+   Lettering sits well inside, so only the empty margin fades. */
+.home-hero .inner .hero-name{
+  display:block;margin:0 auto .8rem;width:auto;max-width:min(680px,90vw);height:auto;
+  filter:none;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),
+                     linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%);
+          mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),
+                     linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%);
+  -webkit-mask-composite:source-in;
+          mask-composite:intersect;
+}
+/* "Ministry Journey": white label, soft gold hairline border */
+.home-hero .btn.ghost{color:#fff;box-shadow:inset 0 0 0 1.5px rgba(243,197,94,.72)}
+.home-hero .btn.ghost:hover{color:#fff;background:rgba(243,197,94,.14);
+  box-shadow:inset 0 0 0 1.5px var(--gold-400)}
+.home-hero .btn.ghost::before{opacity:0}
+.home-hero .btn.ghost:hover::before{opacity:0}
+
+/* ---- Hero (Oct 1, rev 2): title lockup is now a transparent PNG ---- */
+/* The sky was keyed out of the artwork itself, so no mask/panel is needed. */
+.home-hero .inner .hero-name{
+  -webkit-mask-image:none;mask-image:none;
+  max-width:min(700px,92vw);
+  filter:drop-shadow(0 3px 14px rgba(0,6,25,.55));
+}
+/* Gold tagline stays legible where it crosses a bright flag */
+.home-hero .tagline{text-shadow:0 1px 10px rgba(0,6,25,.75),0 0 2px rgba(0,6,25,.6)}
+
+/* ---- Hero (Oct 1, rev 3): keep hero text legible over bright flags ---- */
+/* Soft, edgeless veil behind the hero text only — the photo stays bright elsewhere */
+.home-hero .inner::before{content:"";position:absolute;inset:-8% -12%;z-index:-1;
+  pointer-events:none;
+  background:radial-gradient(62% 62% at 50% 54%,
+    rgba(0,8,34,.44), rgba(0,8,34,.20) 56%, rgba(0,8,34,0) 80%)}
+/* Gold tagline gets a tight dark halo so it survives crossing a white flag */
+.home-hero .tagline{text-shadow:0 0 1px rgba(0,8,34,.95),0 1px 3px rgba(0,8,34,.9),
+  0 2px 14px rgba(0,8,34,.85)}
