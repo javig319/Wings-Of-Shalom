@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Worship Flags — Wings of Shalom</title>
-  <meta name="description" content="Handcrafted worship flag designs by Wings of Shalom — Arise and Shine, River of Life, First Love, and Wings of Shalom. Order or inquire.">
+  <meta name="description" content="Handcrafted worship flag designs by Wings of Shalom — Arise and Shine, River of Life, First Love, and Wings of Shalom. Inquire about availability.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-600.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/theme.css">
@@ -24,7 +24,6 @@
       <h1 data-reveal style="color:#fff">Worship Flags</h1>
       <p class="lead" data-reveal data-reveal-delay="1" style="color:#D7E1F5;max-width:60ch;margin-inline:auto">
         Designed and created to equip worship flag warriors — four silk flag designs, each carrying a word from Scripture.</p>
-      <p class="small" data-reveal data-reveal-delay="2" style="color:#AEBEDF;margin-top:.6rem">Pricing coming soon — request or inquire below and we'll be in touch.</p>
     </div>
   </section>
 
@@ -34,11 +33,11 @@
     </div>
   </section>
 
-  <!-- Order / Inquiry -->
+  <!-- Worship Flag Inquiry -->
   <section class="section band soft" id="order">
     <div class="narrow">
-      <span class="sec-head is-center" data-reveal>Order / Inquiry</span>
-      <p class="text-center lead" data-reveal data-reveal-delay="1" style="margin-bottom:1.6rem">Tell us which flag you'd like and any details — we'll reply with availability and pricing.</p>
+      <span class="sec-head is-center" data-reveal>Worship Flag Inquiry</span>
+      <p class="text-center lead" data-reveal data-reveal-delay="1" style="margin-bottom:1.6rem">Interested in our worship flags? Tell us which design you're interested in, and we'll respond with availability and help you choose flags suited to your worship needs.</p>
       <form class="card" id="order-form" data-reveal="zoom" onsubmit="return wosSubmitOrder(event)"><div class="pad" style="padding:2rem">
         <div class="row-2">
           <div class="field"><label for="of-name">Your name</label><input class="input" id="of-name" required></div>
@@ -54,8 +53,8 @@
           <div class="field"><label for="of-ship">Ship to (city / country)</label><input class="input" id="of-ship"></div>
         </div>
         <div class="field"><label for="of-msg">Message</label><textarea class="textarea" id="of-msg" placeholder="Colour preference, event date, questions…"></textarea></div>
-        <button class="btn block lg" type="submit">Send order request →</button>
-        <p class="small" style="color:var(--text-faint);margin-top:.7rem;text-align:center">Opens your email to <strong>wingsofshalom@gmail.com</strong>. Live card checkout can be switched on later.</p>
+        <button class="btn block lg" type="submit">Send inquiry →</button>
+        <p class="small" style="color:var(--text-faint);margin-top:.7rem;text-align:center">Opens your email to <strong>wingsofshalom@gmail.com</strong>.</p>
       </div></form>
     </div>
   </section>
@@ -69,7 +68,7 @@
     var grid = document.getElementById("flag-grid");
     grid.innerHTML = P.map(function (p, i) {
       return '<article class="product" data-reveal data-reveal-delay="' + ((i % 4) + 1) + '">' +
-        '<div class="media"><span class="badge gold tag">Price on request</span>' +
+        '<div class="media">' +
         '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
         '<div class="info"><span class="cat">' + p.subtitle + '</span>' +
         '<h3>' + p.name + '</h3>' +
@@ -106,7 +105,7 @@
       "Ship to: " + g("of-ship") + "%0D%0A%0D%0A" +
       "Message:%0D%0A" + g("of-msg");
     window.location.href = "mailto:wingsofshalom@gmail.com?subject=" +
-      encodeURIComponent("Worship Flag Order / Inquiry — " + g("of-flag")) + "&body=" + body;
+      encodeURIComponent("Worship Flag Inquiry — " + g("of-flag")) + "&body=" + body;
     if (window.WOS && WOS.toast) WOS.toast("Opening your email…");
     return false;
   }
